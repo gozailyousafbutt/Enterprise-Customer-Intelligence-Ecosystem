@@ -188,4 +188,28 @@ Enterprise_Customer_Ecosystem/
 └── README.md                 # Ecosystem master documentation
 ```
 
+## 🌐 Live Demos and Access Links
+
+Explore the live running applications and dashboards through the module-specific links below:
+
+* 🚀 **Module 1 (SaaS Churn Predictor App):** https://enterprise-customer-intelligence-ecosystem-ggdbazufbfzmkq9p7x9.streamlit.app/
+* 📊 **Module 1 Tableau Dashboard:** https://public.tableau.com/app/profile/gozail.yousaf.butt/viz/CustomerChurnPredictionandRiskAnalysis/CustomerChurnRiskAnalysisDashboard  (Or view workspace inside `SaaS_Churn_Project/dashboard/`)
+* 🚀 **Module 2 (Support Ticket Analyzer App):** https://enterprise-customer-intelligence-ecosystem-feqxinra2yjfqv2zahz.streamlit.app/
+* 📊 **Module 2 Power BI Dashboard:** view local files as detailed below
+* 🚀 **Module 3 (Multimodal RAG Assistant App):** https://enterprise-customer-intelligence-ecosystem-dtgyxhvhxfg6plcqtov.streamlit.app/
+
+---
+
+## 📊 Accessing the Power BI Dashboard (Module 2)
+
+The Power BI dashboard dedicated to support ticket analytics is structured for local exploration. You can review the insights using either of the following approaches:
+
+1. **Quick Visual Preview (Recommended for Recruiters):** 
+   * Navigate directly to the `Ticket_Analyzer/dashboard/` directory within this repository to inspect high-resolution preview screenshots of the dashboard metrics and visualizations.
+
+2. **Interactive Local View (Requires Power BI Desktop):**
+   * Open the `Ticket_Analyzer/dashboard/` folder on your local machine.
+   * Launch the `.pbix` file using [Microsoft Power BI Desktop](https://powerbi.microsoft.com/desktop/) (available free of charge).
+   * *Note:* The dataset references are pre-configured to link seamlessly with the raw and cleaned CSV files stored within the `Ticket_Analyzer/data/` directory.
+
 * **Created by:** Gozail Yousaf Butt
