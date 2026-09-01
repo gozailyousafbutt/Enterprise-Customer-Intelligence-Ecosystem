@@ -20,16 +20,16 @@
 
 ## Key Features
 
-* **Proactive Churn Risk Scoring:** Forecasts subscriber churn probabilities in real-time to implement targeted retention strategies.
+* **Proactive Churn Risk Scoring:** Forecasts subscriber churn probabilities in real-time to implement targeted retention strategies and provides deep visual insights via an interactive Tableau dashboard and Streamlit web app.
 
 
-* **Automated Ticket Triage & Analytics:** Classifies support tickets using machine learning and provides deep visual insights via Tableau, Power BI, and Streamlit.
+* **Automated Ticket Triage and Analytics:** Classifies support tickets using machine learning and provides deep visual insights via Power BI, and Streamlit app.
 
 
-* **Multimodal RAG Assistance:** Extracts text from receipts and screenshots using EasyOCR and retrieves precise context in-memory to answer technical queries.
+* **Multimodal RAG Assistance:** Extracts text from receipts and screenshots using EasyOCR and retrieves precise context in-memory to answer technical queries via a Streamlit interface.
 
 
-* **Dynamic & Machine-Independent Architecture:** Completely portable codebase leveraging Python's `pathlib` for dynamic relative path resolution across local environments, cloud containers, and diverse OS distributions.
+* **Dynamic and Machine-Independent Architecture:** Completely portable codebase leveraging Python's `pathlib` for dynamic relative path resolution across local environments, cloud containers, and diverse OS distributions.
 
 
 * **Unified Web Interfaces:** Interactive Streamlit dashboards built for seamless business navigation across all three modules.
@@ -56,13 +56,13 @@
 
 **How the 3 Projects Link Together:**
 
-1. **Module 1 (SaaS Churn Prediction):** Monitors customer usage data and flags vulnerable accounts at risk of leaving.
+1. **Module 1 (SaaS Churn Prediction):** Monitors customer usage data and flags vulnerable accounts at risk of leaving, powered by an interactive **Streamlit app** and backed by a **Tableau dashboard**.
 
 
-2. **Module 2 (Ticket Analyzer):** When dissatisfied customers raise complaints, this module automatically categorizes and prioritizes incoming support tickets using NLP.
+2. **Module 2 (Ticket Analyzer):** When dissatisfied customers raise complaints, this module automatically categorizes and prioritizes incoming support tickets using NLP, through a dedicated **Streamlit app** paired with a **Power BI dashboard**.
 
 
-3. **Module 3 (Multimodal RAG-Assistant):** For complex technical issues, broken product screenshots, or receipts attached to those tickets, the RAG assistant processes the visuals via OCR and provides instant solutions.
+3. **Module 3 (Multimodal RAG-Assistant):** For complex technical issues, broken product screenshots, or receipts attached to those tickets, the RAG assistant processes the visuals via OCR and provides instant solutions through its **Streamlit interface**.
 
 
 
@@ -90,15 +90,15 @@ pip install -r requirements.txt
 
 * **Installing Dependencies (Individual Module):** If you prefer setting up modules separately, navigate into any specific folder and run:
 ```bash
-# Example for Ticket Analyzer
+# for Ticket Analyzer
 cd Ticket_Analyzer
 pip install -r requirements.txt
 
-# Example for SaaS Churn Project
+# for SaaS Churn Project
 cd SaaS_Churn_Project
 pip install -r requirements.txt
 
-# Example for RAG Assistant
+# for RAG Assistant
 cd RAG_Assistant
 pip install -r requirements.txt
 ```
@@ -119,17 +119,17 @@ streamlit run app/app.py
 Each module is fully containerized and includes its own `Dockerfile` in its respective directory. 
 
 ```bash
-# Example: Deploying Ticket Analyzer via Docker
+# Deploying Ticket Analyzer via Docker
 cd Ticket_Analyzer
 docker build -t ticket-analyzer .
 docker run -p 8501:8501 ticket-analyzer
 
-# Example: Deploying SaaS Churn Predictor via Docker
+# Deploying SaaS Churn Predictor via Docker
 cd SaaS_Churn_Project
 docker build -t saas-churn-predictor .
 docker run -p 8501:8501 saas-churn-predictor
 
-# Example: Deploying Multimodal RAG Assistant via Docker
+# Deploying Multimodal RAG Assistant via Docker
 cd RAG_Assistant
 docker build -t rag-assistant .
 docker run -p 8501:8501 rag-assistant
@@ -162,6 +162,7 @@ Enterprise_Customer_Ecosystem/
 │   ├── src/                  # OOP pipeline modules and utilities
 │   ├── Dockerfile            # Container build configuration
 │   └── requirements.txt      # Module dependencies
+│   └── READme.md             # Module-specific documentation
 │
 ├── Ticket_Analyzer/          # Module 2: Support Ticket Analytics and NLP
 │   ├── app/                  # Streamlit web application
@@ -172,6 +173,7 @@ Enterprise_Customer_Ecosystem/
 │   ├── src/                  # Custom NLP and preprocessing utilities
 │   ├── Dockerfile            # Container build configuration
 │   └── requirements.txt      # Module dependencies
+│   └── READme.md             # Module-specific documentation
 │
 ├── RAG_Assistant/            # Module 3: Multimodal RAG and OCR Assistant
 │   ├── app/                  # Streamlit web application
@@ -180,6 +182,7 @@ Enterprise_Customer_Ecosystem/
 │   ├── src/                  # OCR, embeddings, retrieval & LLM pipeline
 │   ├── Dockerfile            # Container build configuration
 │   └── requirements.txt      # Module dependencies
+│   └── README.md             # Module-specific documentation
 │
 ├── requirements.txt          # Unified ecosystem dependencies
 └── README.md                 # Ecosystem master documentation
