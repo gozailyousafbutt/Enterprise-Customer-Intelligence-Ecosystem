@@ -14,6 +14,7 @@
 ## Key Features
 
 * **Real-Time Risk Scoring:** Instantly calculates subscriber churn probability based on live user inputs.
+* **Dynamic & Portable Path Architecture:** Built with Python `pathlib` for machine-independent execution across local environments, cloud containers, and diverse operating systems.
 * **Interactive Web Interface:** Streamlit dashboard designed for fast, seamless business navigation and metric evaluation.
 * **Automated Data Pipelines:** Handles missing value imputation, robust data scaling, and categorical variable encoding seamlessly.
 * **Model Serialization:** Employs pre-trained machine learning architectures saved via Joblib to ensure instant inference without retraining overhead.
@@ -27,7 +28,7 @@
 * **Web Framework:** Streamlit
 * **Machine Learning & Data Processing:** Scikit-Learn, Pandas, NumPy, XGBoost, Joblib
 * **Data Visualization & BI:** Matplotlib, Seaborn, Tableau
-* **Containerization & Deployment Tools:** Docker (Optional/Containerized configuration), Local Python Runtime
+* **Containerization & Deployment Tools:** Docker (Containerized configuration), Local Python Runtime
 
 ---
 
@@ -55,19 +56,39 @@
    python -m venv venv
    # On Windows:
    venv\Scripts\activate
+   # On Linux/macOS:
+   source venv/bin/activate
+   ```
+3. Install all necessary dependencies from the requirement file:
+   ```bash
+   pip install -r requirements.txt
+   ```
 
-## Install all necessary dependencies from the requirement file
+### Running the Application Locally
+Launch the Streamlit application from the `SaaS_Churn_Project` directory:
+```bash
+streamlit run app/app.py
+```
+Default browser will open automatically at `http://localhost:8501`.
 
-pip install -r requirement.txt
+### Running with Docker
+Build and run using Docker:
+```bash
+# Build Docker image
+docker build -t saas-churn-predictor .
+
+# Run Docker container
+docker run -p 8501:8501 saas-churn-predictor
+```
 
 ---
 
 ## Usage
-After launching the application via Streamlit (streamlit run app/app.py), default browser will open automatically at http://localhost:8501.
-
-Fill out the requested subscriber parameters.
-
-Click the Predict button to view the immediate classification result and risk percentage.
+1. Open terminal and navigate to `SaaS_Churn_Project`.
+2. Launch the application via Streamlit (`streamlit run app/app.py`).
+3. Fill out the requested subscriber parameters.
+4. Click the Predict button to view the immediate classification result and risk percentage.
+5. Open Tableau workbook in `dashboard/` for historical churn analysis.
 
 ---
 
@@ -76,28 +97,26 @@ Click the Predict button to view the immediate classification result and risk pe
 SaaS_Churn_Project/
 │
 ├── app/
-│   └── app.py                      # Main Streamlit web application interface
+│   └── app.py                                          # Main Streamlit web application interface
 ├── dashboard/
 │   └── Customer Churn Prediction and Risk Analysis.twb # Tableau visual workspace
 ├── data/
-│   ├── cleaned_customer_data.csv   # Processed standardized dataset
-│   ├── churn_predictions_output.csv# Model prediction results
-│   ├── cleaning_messy_data.ipynb   # Interactive data cleaning notebook
-│   └── messy_customer_data.csv     # Raw input telemetry dataset
+│   ├── cleaned_customer_data.csv                       # Processed standardized dataset
+│   ├── churn_predictions_output.csv                    # Model prediction results
+│   ├── cleaning_messy_data.ipynb                       # Interactive data cleaning notebook
+│   └── messy_customer_data.csv                         # Raw input telemetry dataset
 ├── model/
-│   └── churn_model_pipeline.pkl    # Production serialized ML pipeline
+│   └── churn_model_pipeline.pkl                        # Production serialized ML pipeline
 ├── notebooks/
-│   ├── load_model_pipeline.ipynb   # Inference and pipeline validation notebook
-│   └── model_training.ipynb        # Model experimentation and training notebook
-├── README/
-│   └── READme                      # Project Documentation
+│   ├── load_model_pipeline.ipynb                       # Inference and pipeline validation notebook
+│   └── model_training.ipynb                            # Model experimentation and training notebook
 ├── src/
-│   ├── class_definitions.ipynb     # Custom OOP cleaning and pipeline classes
-│   └── utilis.py                   # Helper utility functions
-├── Dockerfile                      # Container build configuration file
-└── requirement.txt                 # Project dependency configurations
-
+│   ├── class_definitions.ipynb                         # Custom OOP cleaning and pipeline classes
+│   └── utilis.py                                       # Helper utility functions
+├── Dockerfile                                          # Production container build
+└── requirements.txt                                    # Project dependency configurations
 ```
+
 ---
 
 ## Project Context and Future Improvements

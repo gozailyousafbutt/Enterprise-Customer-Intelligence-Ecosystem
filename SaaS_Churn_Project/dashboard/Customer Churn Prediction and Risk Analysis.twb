@@ -28,7 +28,7 @@
       <connection class='federated'>
         <named-connections>
           <named-connection caption='churn_predictions_output' name='textscan.0tadjkv09ret151gjwwkx0xbkdyq'>
-            <connection class='textscan' directory='D:/SaaS_Churn_Project/data' filename='churn_predictions_output.csv' password='' server='' />
+            <connection class='textscan' directory='../data' filename='churn_predictions_output.csv' password='' server='' />
           </named-connection>
         </named-connections>
         <relation connection='textscan.0tadjkv09ret151gjwwkx0xbkdyq' name='churn_predictions_output.csv' table='[churn_predictions_output#csv]' type='table'>

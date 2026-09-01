@@ -1,17 +1,19 @@
 import joblib
 import sys
+from pathlib import Path
 import streamlit as st
 import pandas as pd
 import matplotlib.pyplot as plt
 import seaborn as sns
 
-# Direct Paths
-SRC_PATH = r"D:\Enterprise Customer Intelligence and Support Ecosystem\Ticket_Analyzer\src"
-DATA_PATH = r"D:\Enterprise Customer Intelligence and Support Ecosystem\Ticket_Analyzer\data\customer_support_tickets.csv"
-MODEL_PATH = r"D:\Enterprise Customer Intelligence and Support Ecosystem\Ticket_Analyzer\model\best_ticket_classifier.pkl"
+# Dynamic Base Directory Resolution
+BASE_DIR = Path(__file__).resolve().parent.parent
+SRC_PATH = BASE_DIR / "src"
+DATA_PATH = BASE_DIR / "data" / "customer_support_tickets.csv"
+MODEL_PATH = BASE_DIR / "model" / "best_ticket_classifier.pkl"
 
-if SRC_PATH not in sys.path:
-    sys.path.append(SRC_PATH)
+if str(SRC_PATH) not in sys.path:
+    sys.path.append(str(SRC_PATH))
 
 from utils import TextPreprocessor
 
@@ -25,13 +27,17 @@ st.set_page_config(
 # Load Model and Data
 @st.cache_resource
 def load_artifacts():
+    if not MODEL_PATH.exists():
+        raise FileNotFoundError(f"Trained model artifact not found at: {MODEL_PATH}")
     package = joblib.load(MODEL_PATH)
     return package["model"], package["vectorizer"], package.get("model_name", "Machine Learning Model")
 
 @st.cache_data
 def load_historical_data():
     try:
-        return pd.read_csv(DATA_PATH)
+        if DATA_PATH.exists():
+            return pd.read_csv(DATA_PATH)
+        return None
     except Exception:
         return None
 

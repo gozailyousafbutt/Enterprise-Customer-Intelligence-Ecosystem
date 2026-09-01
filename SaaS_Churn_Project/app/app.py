@@ -1,7 +1,18 @@
+import sys
+from pathlib import Path
 import joblib
 import numpy as np
 import pandas as pd
 import streamlit as st
+
+# Dynamic Base Directory Resolution
+BASE_DIR = Path(__file__).resolve().parent.parent
+SRC_PATH = BASE_DIR / "src"
+DATA_PATH = BASE_DIR / "data" / "cleaned_customer_data.csv"
+MODEL_PATH = BASE_DIR / "model" / "churn_model_pipeline.pkl"
+
+if str(SRC_PATH) not in sys.path:
+    sys.path.append(str(SRC_PATH))
 
 # Page Configuration
 st.set_page_config(
@@ -13,7 +24,9 @@ st.set_page_config(
 @st.cache_resource
 def load_pipeline():
   try:
-    return joblib.load(r"D:\Enterprise Customer Intelligence and Support Ecosystem\SaaS_Churn_Project\model\churn_model_pipeline.pkl")
+    if MODEL_PATH.exists():
+      return joblib.load(MODEL_PATH)
+    return None
   except Exception as e:
     return None
 
@@ -21,7 +34,9 @@ def load_pipeline():
 @st.cache_data
 def load_data():
   try:
-    return pd.read_csv(r"D:\Enterprise Customer Intelligence and Support Ecosystem\SaaS_Churn_Project\data\cleaned_customer_data.csv")
+    if DATA_PATH.exists():
+      return pd.read_csv(DATA_PATH)
+    return None
   except Exception as e:
     return None
 

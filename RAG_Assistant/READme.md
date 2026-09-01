@@ -15,6 +15,7 @@
 ## Key Features
 
 * **In-Memory Multimodal Retrieval:** Efficiently indexes and retrieves text chunks and OCR-extracted image data in memory using `InMemoryRAGEngine` and Scikit-Learn cosine similarity.
+* **Dynamic & Portable Path Architecture:** Built with Python `pathlib` for machine-independent execution across local environments, cloud containers, and diverse operating systems.
 * **Integrated OCR Processing:** Utilizes `EasyOCR` and PIL to extract clean text data from customer support images and receipts automatically.
 * **Interactive Streamlit Web UI:** Clean, responsive user dashboard built in `app/app.py` for uploading image files and querying the assistant in real-time.
 * **Modular Pipeline Architecture:** Clean separation of data source files, utility scripts (`src/utilis.py`), and training notebooks.
@@ -23,10 +24,10 @@
 
 ## Tech Stack
 
-* **Programming Language:** Python
-* **RAG & Frameworks:** Hugging Face Transformers, Sentence-Transformers, PyTorch
+* **Programming Language:** Python 3.9+
+* **RAG & Deep Learning:** Hugging Face Transformers, Sentence-Transformers, PyTorch, LangChain
 * **Image Processing & OCR:** OpenCV, Pillow, EasyOCR, NumPy
-* **Machine Learning & Metrics:** Scikit-Learn
+* **Machine Learning & Metrics:** Scikit-Learn, Pandas
 * **App Framework:** Streamlit
 * **Containerization:** Docker
 
@@ -46,40 +47,52 @@
 
 ## Getting Started 
 
-### Installation
-
 ### Prerequisites
 
-* Python 3.8 or higher
+* Python 3.9 or higher
 * Pip package manager
+* Docker Desktop (Optional, for containerized run)
 
 ### Installing Dependencies
 
-```bash
-pip install -r requirement.txt
+Navigate to the `RAG_Assistant` folder and install dependencies:
 
+```bash
+pip install -r requirements.txt
 ```
 
 ### Setting up Environment Variables
 
 Create a `.env` file in the root directory to supply Hugging Face or LLM API keys if required.
 
-### Running the Application
+### Running the Application Locally
 
-Launch the Streamlit interface locally:
+Launch the Streamlit interface locally from the `RAG_Assistant` directory:
 
 ```bash
 streamlit run app/app.py
+```
 
+### Running with Docker
+
+Build and run using Docker:
+
+```bash
+# Build Docker image
+docker build -t rag-assistant .
+
+# Run Docker container
+docker run -p 8501:8501 rag-assistant
 ```
 
 ---
 
 ## Usage
 
-1. Launch the application using the Streamlit command in your terminal.
-2. Upload sample images (from `data/sample_images/`) or support documents into the interface.
-3. Query the assistant regarding receipt details, issue contents, or technical documentation to observe multimodal RAG responses in action.
+1. Open terminal and navigate to `RAG_Assistant`.
+2. Launch the application using `streamlit run app/app.py`.
+3. Upload sample images (from `data/sample_images/`) or support documents into the interface.
+4. Query the assistant regarding receipt details, issue contents, or technical documentation to observe multimodal RAG responses in action.
 
 ---
 
@@ -89,20 +102,17 @@ streamlit run app/app.py
 RAG_Assistant/
 │
 ├── app/
-│   └── app.py
+│   └── app.py                      # Main Streamlit web application
 ├── data/
-│   ├── sample_images/
-│   └── customer_support_tickets
+│   ├── sample_images/              # Sample receipts & issue screenshots
+│   └── customer_support_tickets.csv# Knowledge base documents
 ├── notebooks/
-│   └── model_training
-├── README/
-│   └── README.md
+│   └── model_training.ipynb        # Pipeline development & experimentation
 ├── src/
-│   ├── class_definitions
-│   └── utilis.py
-├── Dockerfile
-└── requirement.txt
-
+│   ├── class_definitions.ipynb     # OOP class design notebook
+│   └── utilis.py                   # OCR, embedding, retrieval, & LLM modules
+├── Dockerfile                      # Production container build
+└── requirements.txt                # Project dependencies
 ```
 
 ---

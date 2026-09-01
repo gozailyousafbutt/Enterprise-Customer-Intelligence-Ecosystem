@@ -4,10 +4,13 @@ import sys
 from PIL import Image
 import streamlit as st
 
-# Path configuration
-src_path = Path(r"D:/Enterprise Customer Intelligence and Support Ecosystem/RAG_Assistant/src")
-if str(src_path) not in sys.path:
-  sys.path.append(str(src_path))
+# Dynamic Base Directory Resolution
+BASE_DIR = Path(__file__).resolve().parent.parent
+SRC_PATH = BASE_DIR / "src"
+DATA_PATH = BASE_DIR / "data" / "customer_support_tickets.csv"
+
+if str(SRC_PATH) not in sys.path:
+  sys.path.append(str(SRC_PATH))
 
 from utilis import FinalMultimodalRAGPipeline
 
@@ -36,8 +39,10 @@ with st.sidebar:
 @st.cache_resource
 def load_rag_pipeline():
   try:
+    if not DATA_PATH.exists():
+      return None, f"Knowledge base dataset not found at: {DATA_PATH}"
     pipeline = FinalMultimodalRAGPipeline(
-        csv_path=r"D:/Enterprise Customer Intelligence and Support Ecosystem/RAG_Assistant/data/customer_support_tickets.csv",
+        csv_path=str(DATA_PATH),
         text_column="Ticket Description",
     )
     return pipeline, None

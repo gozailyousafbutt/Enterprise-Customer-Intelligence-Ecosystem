@@ -1,7 +1,7 @@
-
 # **AI-Powered Customer Support Ticket Analyzer: Classification, NLP and Analytics System**
 
-> An End-to-End Python-Based AI Project for Customer Support Ticket Analytics aand NLP
+> An End-to-End Python-Based AI Project for Customer Support Ticket Analytics and NLP
+
 ---
 
 ## Description
@@ -15,18 +15,19 @@
 ## Key Features
 
 * **Automated Ticket Classification:** Predicts ticket categories using a pre-trained machine learning classifier.
+* **Dynamic & Portable Path Architecture:** Built with Python `pathlib` for machine-independent execution across local environments, cloud containers, and diverse operating systems.
 * **Interactive Streamlit Web App:** Provides a clean user interface for running real-time inferences and exploring data.
-* **Tableau Analytics Workspace:** Includes a dedicated visual dashboard for comprehensive customer support and ticket analytics.
+* **Power BI Analytics Workspace:** Includes a dedicated visual dashboard for comprehensive customer support and ticket analytics.
 * **Modular Pipeline Architecture:** Clean separation of data source files, custom OOP class definitions, utilities, and training notebooks.
 
 ---
 
 ## Tech Stack
 
-* **Programming Language:** Python
-* **Machine Learning & NLP:** Scikit-Learn, Pandas, NumPy
+* **Programming Language:** Python 3.9+
+* **Machine Learning & NLP:** Scikit-Learn, Pandas, NumPy, XGBoost, NLTK, Joblib
 * **App Framework:** Streamlit
-* **Visualization:** Power BI
+* **Visualization:** Power BI, Matplotlib, Seaborn
 * **Containerization:** Docker
 
 ---
@@ -45,70 +46,74 @@
 
 ## Getting Started 
 
-### Installation
-
 ### Prerequisites
 
-* Python 3.8 or higher
+* Python 3.9 or higher
 * Pip package manager
+* Docker Desktop (Optional, for containerized run)
 
 ### Installing Dependencies
 
+Navigate to the `Ticket_Analyzer` folder and install dependencies:
 
 ```bash
-pip install -r requirement.txt
-
+pip install -r requirements.txt
 ```
 
-### Setting up Environment Variables
+### Running the Application Locally
 
-Create a `.env` file in the root directory if deployment requires custom configurations (or leave default for local execution).
-
-### Running the Application
-
-Launch the Streamlit web application locally:
+Launch the Streamlit web application locally from the `Ticket_Analyzer` directory:
 
 ```bash
 streamlit run app/app.py
+```
 
+### Running with Docker
+
+Build and run the containerized application:
+
+```bash
+# Build Docker image
+docker build -t ticket-analyzer .
+
+# Run Docker container
+docker run -p 8501:8501 ticket-analyzer
 ```
 
 ---
 
 ## Usage
 
-1. Open terminal and navigate to the project directory.
+1. Open terminal and navigate to the `Ticket_Analyzer` directory.
 2. Start the app using `streamlit run app/app.py`.
 3. Input customer support queries into the web interface to view automated classifications and risk analytics.
-4. Open the Power BI file from the dashboard folder to inspect deep-dive historical metrics.
+4. Open the Power BI file from the `dashboard/` folder to inspect deep-dive historical metrics.
 
 ---
 
-## 8. Project Structure
+## Project Structure
 
 ```text
 Ticket_Analyzer/
 │
 ├── app/
-│   └── app.py
+│   └── app.py                                              # Streamlit web application
 ├── dashboard/
-│   └── SaaS Customer Support and Ticket Analytics ....
+│   └── SaaS Customer Support and Ticket Analytics Dashboard.pbix # Power BI Dashboard
 ├── data/
-│   └── customer_support_tickets.xlsx
+│   └── customer_support_tickets.csv                        # Historical ticket dataset
 ├── model/
-│   └── best_ticket_classifier.pkl
+│   └── best_ticket_classifier.pkl                          # Serialized ML model package
 ├── notebooks/
-│   ├── load_model.ipynb
-│   └── model_training.ipynb
-├── README/
-│   └── READme
+│   ├── load_model.ipynb                                    # Inference testing notebook
+│   └── model_training.ipynb                                # Model training & evaluation
 ├── src/
-│   ├── class_definitions.ipynb
-│   └── utils.py
-├── Dockerfile
-└── requirement.txt
-
+│   ├── class_definitions.ipynb                             # OOP class design notebook
+│   └── utils.py                                            # Preprocessing & model utilities
+├── Dockerfile                                              # Production container build
+└── requirements.txt                                        # Project dependencies
 ```
+
 ---
 
 ## Project Context and Limitations
