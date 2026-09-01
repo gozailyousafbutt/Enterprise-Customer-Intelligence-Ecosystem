@@ -17,7 +17,7 @@ transformers>=4.0.0
 sentence-transformers>=2.0.0
 
 # --- Computer Vision and OCR ---
-opencv-python>=4.5.0
+opencv-python-headless>=4.5.0
 pillow>=8.0.0
 easyocr>=1.4.0
 
